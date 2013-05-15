@@ -39,7 +39,7 @@ class Synset < ActiveRecord::Base
 
   wn_belongs_to :sense, :synset
   wn_has_one :synset_def, :synset, class_name: 'SynsetDef'
-  has_many :ancestors, primary_key: :synset, foreign_key: :synset1, order: :hops
+  has_many :ancestors, ->{order :hops}, primary_key: :synset, foreign_key: :synset1
 end
 
 class SynsetDef < ActiveRecord::Base
