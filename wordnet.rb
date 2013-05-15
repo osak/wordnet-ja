@@ -14,10 +14,10 @@ define_wn_relation :belongs_to
 
 class Word < ActiveRecord::Base
   self.table_name = 'word'
-  composed_of :wordid , class_name: Integer.to_s
+  composed_of :wordid , class_name: Integer.to_s, constructor: proc{|i| i.to_i}
   composed_of :lang   , class_name: String.to_s
   composed_of :lemma  , class_name: String.to_s
-  composed_of :pron   , class_name: String.to_s
+  composed_of :pron   , class_name: String.to_s, allow_nil: true
   composed_of :pos    , class_name: String.to_s
 
   wn_has_many :senses, :wordid
